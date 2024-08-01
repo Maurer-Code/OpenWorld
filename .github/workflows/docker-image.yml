@@ -22,9 +22,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Convert BRANCHE_NAME to lower case
-        run: echo "BRANCH_NAME_LOWER=$(echo ${GITHUB_REF##*/} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
       - name: Convert REPO_NAME to lower case
         run: echo "REPO_NAME_LOWER=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
@@ -33,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ env.REPO_NAME_LOWER }}/openworld_{{ env.BRANCH_NAME_LOWER }}:latest
+          tags: ghcr.io/${{ env.REPO_NAME_LOWER }}/openworld:latest
