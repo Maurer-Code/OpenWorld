@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if code == 401 %}
+Unauthorized (401)
+{% elif code == 403 %}
+Forbidden (403)
+{% elif code == 404 %}
+Not Found (404)
+{% elif code == 405 %}
+Method not allowed (405)
+{% elif code == 413 %}
+Request if too big (413)
+{% else %}
+Unknown Error ({{ code }})
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<br />
+<div class="container">
+    <div style="padding-top: 100px; font-size: 120px">{{ code }}</div>
+{% if code == 401 %}
+    <h3>You're not allowed to access.</h3>
+{% elif code == 403 %}
+    <h3>This operation is forbidden.</h3>
+{% elif code == 404 %}
+    <h3>The resource can not be found.</h3>
+{% elif code == 405 %}
+    <h3>The method of your request is not allowed.</h3>
+{% elif code == 413 %}
+    <h3>Please check the file size you're uploading.</h3>
+{% else %}
+    <h3>Unknown Error.</h3>
+{% endif %}
+</div>
+{% endblock %}

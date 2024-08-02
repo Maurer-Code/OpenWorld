@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Background image -->
+<br />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-5 col-md-8">
+            <form class="bg-white rounded shadow-5-strong p-5" method="post">
+
+                <!-- First name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="first_name" name="first_name" class="form-control" />
+                    <label class="form-label" for="first_name">First name</label>
+                </div>
+
+                <!-- Last name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="last_name" name="last_name" class="form-control" />
+                    <label class="form-label" for="last_name">Last name</label>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="email" name="email" class="form-control" />
+                    <label class="form-label" for="email">Email address</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control" />
+                    <label class="form-label" for="password">Password</label>
+                </div>
+
+                <!-- Password confirm input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password_confirm" name="password_confirm" class="form-control" />
+                    <label class="form-label" for="password_confirm">Confirm Password</label>
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="yes" id="remember_me" name="remember_me" checked />
+                            <label class="form-check-label" for="remember_me">Remember me</label>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

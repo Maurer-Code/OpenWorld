@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} Roles {% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+
+<br />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <form class="rounded shadow-5-strong p-5" method="post">
+                <ul class="list-group" style="min-width: fit-content">
+                    <li class="list-group-item">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    {% for item in user.role.get_keys() %}
+                                    <th>{{ item }}</th>
+                                    {% endfor %}
+                                    <th>Timestamp (UTC)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in roles %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.name }}</td>
+                                    {% for checked in item.get_values() %}
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="{{ item.name }}_{{ loop.index0 }}" {% if checked %} checked {% endif %}>
+                                            <label class="form-check-label" for="{{ item.name }}_{{ loop.index0 }}"></label>
+                                        </div>
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="d-flex align-items-center" style="min-width: 160px">
+                                            <div>
+                                                <p class="fw-bold mb-1">{{ item.created_on }}</p>
+                                                <p class="text-muted mb-0">{{ item.modified_on }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

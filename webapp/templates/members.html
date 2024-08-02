@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} Members {% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+
+<br />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <ul class="list-group" style="min-width: fit-content">
+                <li class="list-group-item">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Position</th>
+                                {% if user.role.get_admin_rights() %}
+                                <th>Timestamp (UTC)</th>
+                                <th>Actions</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in members %}
+                            <tr>
+                                <td><strong>{{ item.id }}</strong></td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="static/img/user/{{ item.image }}"
+                                             onerror="this.src='https://mdbootstrap.com/img/new/avatars/8.jpg';"
+                                             loading="lazy"
+                                             style="width: 45px; height: 45px"
+                                             class="rounded-circle"/>
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{ item.first_name }} {{ item.last_name }}</p>
+                                            <p class="text-muted mb-0">{{ item.email }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <p class="fw-normal mb-1">{{ item.position }}</p>
+                                    <p class="text-muted mb-0">{{ item.department }}</p>
+                                </td>
+
+                                <td>
+                                    {% if item.active %}
+                                    <span class="badge rounded-pill bg-info text-dark">Active</span>
+                                    {% else %}
+                                    <span class="badge rounded-pill bg-light text-dark">Active</span>
+                                    {% endif %}
+                                </td>
+
+                                <td><strong>{{ item.role.name }}</strong></td>
+                                {% if user.role.get_admin_rights() %}
+                                <td>
+                                    <div class="d-flex align-items-center" style="min-width: 160px">
+                                        <div>
+                                            <p class="fw-bold mb-1">{{ item.created_on }}</p>
+                                            <p class="text-muted mb-0">{{ item.last_login }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-outline-dark btn-sm">EDIT</button>
+                                    {% if user.role.get_admin_rights() %}
+                                    <button type="button" class="btn btn-outline-dark btn-sm">DELETE</button>
+                                    {% endif %}
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}
